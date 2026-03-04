@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVS Diesel | Especialistas em Linha Pesada - Ponta Grossa</title>
+    <meta name="description" content="Especialistas em Linha Pesada. Elétrica, ar condicionado, climatizadores, baterias e acessórios para caminhões. Atendimento móvel em Ponta Grossa, Castro, Piraí do Sul e região.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Rajdhani', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                    },
+                    colors: {
+                        // Dark Mode "Chumbo" (Cinza Neutro/Escuro)
+                        avs: {
+                            dark: '#0a0a0a',      // neutral-950
+                            card: '#171717',      // neutral-900
+                            border: '#262626',    // neutral-800
+                            yellow: '#eab308',    // Amarelo Industrial
+                            'yellow-hover': '#ca8a04',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(234, 179, 8, 0.4)' },
+                            '50%': { boxShadow: '0 0 40px rgba(234, 179, 8, 0.8)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        html {
+            /* MÁGICA DO ZOOM: Reduz o 'rem' base, encolhendo o site inteiro proporcionalmente em 10% */
+            font-size: 90%; 
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-avs-dark text-white font-sans antialiased">
+
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="flex items-center justify-between h-24">
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="img/logo.jpg" alt="Logo AVS Diesel" class="w-12 h-12 rounded-lg object-cover border-2 border-avs-border group-hover:border-avs-yellow transition-colors duration-300 shadow-lg">
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-heading font-bold text-white tracking-wider uppercase">AVS <span class="text-avs-yellow">DIESEL</span></span>
+                        <span class="text-[11px] text-zinc-400 font-semibold tracking-[0.2em] uppercase -mt-1">Performance</span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#servicos" class="text-base text-zinc-300 hover:text-avs-yellow transition-colors duration-300 font-semibold uppercase tracking-wider">Serviços</a>
+                    <a href="#cobertura" class="text-base text-zinc-300 hover:text-avs-yellow transition-colors duration-300 font-semibold uppercase tracking-wider">Cobertura</a>
+                    <a href="#diferenciais" class="text-base text-zinc-300 hover:text-avs-yellow transition-colors duration-300 font-semibold uppercase tracking-wider">Diferenciais</a>
+                    <a href="#contato" class="text-base text-zinc-300 hover:text-avs-yellow transition-colors duration-300 font-semibold uppercase tracking-wider">Contato</a>
+                </nav>
+
+                <div class="hidden md:block">
+                    <a href="https://wa.me/554299081928" target="_blank" class="inline-flex items-center gap-2 bg-avs-yellow hover:bg-avs-yellow-hover text-avs-dark font-bold text-lg px-6 py-3 rounded-none transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-avs-yellow/30 uppercase tracking-wide">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-white hover:text-avs-yellow transition-colors">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-avs-dark/95 backdrop-blur-xl border-t border-avs-border shadow-2xl">
+            <nav class="flex flex-col p-6 gap-4">
+                <a href="#servicos" class="text-zinc-300 hover:text-avs-yellow transition-colors py-2 border-b border-avs-border font-semibold uppercase tracking-wider">Serviços</a>
+                <a href="#cobertura" class="text-zinc-300 hover:text-avs-yellow transition-colors py-2 border-b border-avs-border font-semibold uppercase tracking-wider">Área de Cobertura</a>
+                <a href="#diferenciais" class="text-zinc-300 hover:text-avs-yellow transition-colors py-2 border-b border-avs-border font-semibold uppercase tracking-wider">Diferenciais</a>
+                <a href="#contato" class="text-zinc-300 hover:text-avs-yellow transition-colors py-2 font-semibold uppercase tracking-wider">Contato</a>
+                <a href="https://wa.me/554299081928" target="_blank" class="inline-flex items-center justify-center gap-2 bg-avs-yellow text-avs-dark font-bold px-6 py-3 rounded-none mt-4 uppercase tracking-wider text-lg">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    <span>Chamar no WhatsApp</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                <source src="img/hero.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-avs-dark/80 via-avs-dark/30 to-avs-dark"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-avs-dark/80 via-avs-dark/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-20">
+            <div class="max-w-4xl">
+                <div class="reveal-left inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/20 px-4 py-2 mb-6 rounded-none shadow-lg">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="text-sm font-semibold text-zinc-100 uppercase tracking-widest">Atendimento 24h na região</span>
+                </div>
+
+                <h1 class="reveal font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] mb-6 uppercase tracking-tight drop-shadow-lg">
+                    Soluções em<br>
+                    <span class="text-avs-yellow drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">Linha Pesada</span><br>
+                    que não param.
+                </h1>
+
+                <p class="reveal-right text-xl sm:text-2xl text-zinc-200 max-w-2xl mb-8 leading-relaxed font-medium drop-shadow-md">
+                    Especialistas em <span class="text-white font-bold">baterias, elétrica, ar condicionado</span> e <span class="text-white font-bold">climatização</span>. Atendimento móvel direto na sua residência ou onde o bruto estiver parado.
+                </p>
+
+                <div class="reveal flex flex-wrap gap-8 mb-10">
+                    <div class="flex items-center gap-3 bg-avs-dark/40 p-3 rounded-xl backdrop-blur-sm border border-white/10">
+                        <div class="w-14 h-14 bg-avs-yellow/20 border border-avs-yellow/40 flex items-center justify-center shadow-inner">
+                            <i data-lucide="map-pin" class="w-7 h-7 text-avs-yellow"></i>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold font-heading text-white tracking-wide">4+</p>
+                            <p class="text-base font-semibold text-zinc-300 uppercase">Cidades atendidas</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-avs-dark/40 p-3 rounded-xl backdrop-blur-sm border border-white/10">
+                        <div class="w-14 h-14 bg-avs-yellow/20 border border-avs-yellow/40 flex items-center justify-center shadow-inner">
+                            <i data-lucide="clock" class="w-7 h-7 text-avs-yellow"></i>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold font-heading text-white tracking-wide">24h</p>
+                            <p class="text-base font-semibold text-zinc-300 uppercase">Plantão emergência</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-scale flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/554299081928" target="_blank" class="inline-flex items-center justify-center gap-3 bg-avs-yellow hover:bg-avs-yellow-hover text-avs-dark font-bold text-xl px-10 py-4 rounded-none transition-all duration-300 hover:scale-105 animate-pulse-glow uppercase tracking-wider">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        <span>Chamar WhatsApp</span>
+                    </a>
+                    <a href="#servicos" class="inline-flex items-center justify-center gap-3 bg-avs-dark/60 backdrop-blur-md border border-white/20 hover:bg-avs-dark/80 text-white font-bold text-xl px-10 py-4 rounded-none transition-all duration-300 hover:scale-105 uppercase tracking-wider shadow-lg">
+                        <span>Ver Serviços</span>
+                        <i data-lucide="arrow-down" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="relative py-24 lg:py-32 bg-avs-dark border-t border-avs-border">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="reveal inline-flex items-center gap-2 bg-avs-yellow/10 border border-avs-yellow/20 px-4 py-2 mb-6">
+                    <i data-lucide="settings" class="w-5 h-5 text-avs-yellow"></i>
+                    <span class="text-base text-avs-yellow font-bold uppercase tracking-widest">Nossos Serviços</span>
+                </div>
+                <h2 class="reveal font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 uppercase tracking-tight">
+                    Tudo que seu <span class="text-avs-yellow">caminhão</span> precisa
+                </h2>
+                <p class="reveal text-zinc-400 text-xl font-medium">
+                    Oferecemos soluções completas para manter sua frota em movimento, com profissionais especializados e peças de alta durabilidade.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div class="reveal-scale group relative bg-avs-card backdrop-blur-md border border-avs-border p-8 hover:border-avs-yellow transition-all duration-500 hover:-translate-y-2 shadow-lg">
+                    <div class="absolute inset-0 bg-gradient-to-br from-avs-yellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-avs-dark border border-avs-border flex items-center justify-center mb-6 group-hover:bg-avs-yellow group-hover:border-avs-yellow transition-all duration-300">
+                            <i data-lucide="zap" class="w-8 h-8 text-avs-yellow group-hover:text-avs-dark transition-colors"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Elétrica Pesada</h3>
+                        <p class="text-zinc-400 leading-relaxed mb-6 font-medium text-lg">
+                            Diagnóstico e reparo completo do sistema elétrico. Alternadores, motores de partida, chicotes e instalações em geral.
+                        </p>
+                        <ul class="space-y-3 text-base text-zinc-300 font-semibold">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Teste de alternador e partida</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Reparo de chicotes elétricos</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal-scale group relative bg-avs-card backdrop-blur-md border border-avs-border p-8 hover:border-avs-yellow transition-all duration-500 hover:-translate-y-2 shadow-lg">
+                    <div class="absolute inset-0 bg-gradient-to-br from-avs-yellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-avs-dark border border-avs-border flex items-center justify-center mb-6 group-hover:bg-avs-yellow group-hover:border-avs-yellow transition-all duration-300">
+                            <i data-lucide="wind" class="w-8 h-8 text-avs-yellow group-hover:text-avs-dark transition-colors"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Ar Condicionado</h3>
+                        <p class="text-zinc-400 leading-relaxed mb-6 font-medium text-lg">
+                            Instalação, manutenção e higienização completa do sistema. Garantimos total conforto térmico na cabine para as viagens.
+                        </p>
+                        <ul class="space-y-3 text-base text-zinc-300 font-semibold">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Recarga de gás refrigerante</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Detecção de vazamentos</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal-scale group relative bg-avs-card backdrop-blur-md border border-avs-border p-8 hover:border-avs-yellow transition-all duration-500 hover:-translate-y-2 shadow-lg">
+                    <div class="absolute inset-0 bg-gradient-to-br from-avs-yellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-avs-dark border border-avs-border flex items-center justify-center mb-6 group-hover:bg-avs-yellow group-hover:border-avs-yellow transition-all duration-300">
+                            <i data-lucide="thermometer-snowflake" class="w-8 h-8 text-avs-yellow group-hover:text-avs-dark transition-colors"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Climatizadores</h3>
+                        <p class="text-zinc-400 leading-relaxed mb-6 font-medium text-lg">
+                            Venda, instalação e manutenção de climatizadores de teto para cabine. A solução econômica para dormir com tranquilidade.
+                        </p>
+                        <ul class="space-y-3 text-base text-zinc-300 font-semibold">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Instalação profissional</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Limpeza e troca de filtros</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal-scale group relative bg-avs-card backdrop-blur-md border border-avs-border p-8 hover:border-avs-yellow transition-all duration-500 hover:-translate-y-2 shadow-lg">
+                    <div class="absolute inset-0 bg-gradient-to-br from-avs-yellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-avs-dark border border-avs-border flex items-center justify-center mb-6 group-hover:bg-avs-yellow group-hover:border-avs-yellow transition-all duration-300">
+                            <i data-lucide="battery-charging" class="w-8 h-8 text-avs-yellow group-hover:text-avs-dark transition-colors"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Baterias Pesadas</h3>
+                        <p class="text-zinc-400 leading-relaxed mb-6 font-medium text-lg">
+                            Venda e entrega de baterias de alta amperagem para linha pesada. Realizamos o teste de carga e a instalação na hora.
+                        </p>
+                        <ul class="space-y-3 text-base text-zinc-300 font-semibold">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Modelos de 150Ah a 225Ah</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Socorro móvel para troca</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal-scale group relative bg-avs-card backdrop-blur-md border border-avs-border p-8 hover:border-avs-yellow transition-all duration-500 hover:-translate-y-2 shadow-lg">
+                    <div class="absolute inset-0 bg-gradient-to-br from-avs-yellow/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-avs-dark border border-avs-border flex items-center justify-center mb-6 group-hover:bg-avs-yellow group-hover:border-avs-yellow transition-all duration-300">
+                            <i data-lucide="truck" class="w-8 h-8 text-avs-yellow group-hover:text-avs-dark transition-colors"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Acessórios</h3>
+                        <p class="text-zinc-400 leading-relaxed mb-6 font-medium text-lg">
+                            Grande variedade de acessórios elétricos e iluminação para deixar seu caminhão dentro das normas e funcional.
+                        </p>
+                        <ul class="space-y-3 text-base text-zinc-300 font-semibold">
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Faróis e iluminação LED</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i data-lucide="check-square" class="w-5 h-5 text-avs-yellow"></i>
+                                <span>Rastreadores e segurança</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal-scale group relative bg-avs-yellow border border-avs-yellow p-8 hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-avs-yellow/20">
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-avs-dark flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-all duration-300 border border-zinc-700">
+                            <i data-lucide="car-front" class="w-8 h-8 text-avs-yellow"></i>
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold text-avs-dark mb-3 flex items-center gap-3 uppercase tracking-wide">
+                            Socorro Móvel <span class="bg-red-600 text-white text-xs uppercase px-2 py-1 rounded-sm font-bold animate-pulse tracking-widest">24h</span>
+                        </h3>
+                        <p class="text-zinc-800 leading-relaxed mb-6 font-bold text-lg">
+                            Atendimento de emergência! Vamos até a sua residência, transportadora ou onde o veículo estiver quebrado na região.
+                        </p>
+                        <a href="https://wa.me/554299081928" target="_blank" class="inline-flex w-full items-center justify-center gap-3 bg-avs-dark hover:bg-zinc-800 text-avs-yellow font-bold text-lg py-4 transition-all duration-300 uppercase tracking-wider shadow-lg">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            Solicitar Resgate
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cobertura" class="relative py-24 lg:py-32 bg-avs-card overflow-hidden border-t border-avs-border">
+        <div class="absolute inset-0 opacity-[0.02]">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+        </div>
+
+        <div class="relative w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div>
+                    <div class="reveal inline-flex items-center gap-2 bg-avs-yellow/10 border border-avs-yellow/20 px-4 py-2 mb-6">
+                        <i data-lucide="map" class="w-5 h-5 text-avs-yellow"></i>
+                        <span class="text-base text-avs-yellow font-bold uppercase tracking-widest">Área de Atuação</span>
+                    </div>
+                    
+                    <h2 class="reveal font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 uppercase tracking-tight">
+                        Atendimento móvel na <span class="text-avs-yellow">sua região</span>
+                    </h2>
+                    
+                    <p class="reveal text-zinc-400 text-xl mb-8 font-medium leading-relaxed">
+                        Levamos nossa expertise em linha pesada até você. Atendemos em toda a região dos Campos Gerais do Paraná, com rapidez para não atrasar seu frete.
+                    </p>
+
+                    <div class="reveal grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-4 bg-avs-dark border border-avs-border p-4 shadow-inner">
+                            <div class="w-12 h-12 bg-avs-card border border-avs-border flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-avs-yellow"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-lg text-white font-heading tracking-wide uppercase">Ponta Grossa</p>
+                                <p class="text-sm font-semibold text-zinc-500 uppercase tracking-widest">Base PR</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-avs-dark border border-avs-border p-4 shadow-inner">
+                            <div class="w-12 h-12 bg-avs-card border border-avs-border flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-avs-yellow"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-lg text-white font-heading tracking-wide uppercase">Castro</p>
+                                <p class="text-sm font-semibold text-zinc-500 uppercase tracking-widest">Região PR</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-avs-dark border border-avs-border p-4 shadow-inner">
+                            <div class="w-12 h-12 bg-avs-card border border-avs-border flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-avs-yellow"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-lg text-white font-heading tracking-wide uppercase">Piraí do Sul</p>
+                                <p class="text-sm font-semibold text-zinc-500 uppercase tracking-widest">Região PR</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-avs-dark border border-avs-border p-4 shadow-inner">
+                            <div class="w-12 h-12 bg-avs-card border border-avs-border flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-avs-yellow"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-lg text-white font-heading tracking-wide uppercase">Norte do PR</p>
+                                <p class="text-sm font-semibold text-zinc-500 uppercase tracking-widest">Cobertura</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal bg-gradient-to-r from-avs-yellow/10 to-transparent border-l-4 border-avs-yellow p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-avs-yellow flex items-center justify-center flex-shrink-0 shadow-lg shadow-avs-yellow/20">
+                                <i data-lucide="home" class="w-7 h-7 text-avs-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-heading font-bold text-white mb-2 uppercase tracking-wide">Atendimento na residência</h4>
+                                <p class="text-zinc-300 text-base font-medium leading-relaxed">
+                                    Não precisa mover o bruto. Nossa equipe vai até o local onde ele estiver: sua casa, empresa, transportadora ou posto de combustível.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-right relative">
+                    <div class="relative overflow-hidden border-4 border-avs-border">
+                        <img src="https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Atendimento móvel mecânica pesada" class="w-full h-[550px] object-cover object-center grayscale-[30%] hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-avs-dark via-avs-dark/40 to-transparent opacity-90"></div>
+                        
+                        <div class="absolute bottom-6 left-6 right-6 bg-avs-card/95 backdrop-blur-xl border border-avs-border p-6 shadow-2xl">
+                            <div class="flex items-center gap-5">
+                                <div class="w-16 h-16 bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="power" class="w-8 h-8 text-green-500"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-bold font-heading text-2xl uppercase tracking-wider">Pronto Atendimento</p>
+                                    <p class="text-zinc-400 font-semibold text-base mt-1">Viatura de socorro sempre a postos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -top-4 -right-4 w-32 h-32 bg-avs-yellow/20 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-4 -left-4 w-40 h-40 bg-avs-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diferenciais" class="relative py-24 lg:py-32 bg-avs-dark border-t border-avs-border">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="reveal inline-flex items-center gap-2 bg-avs-yellow/10 border border-avs-yellow/20 px-4 py-2 mb-6">
+                    <i data-lucide="award" class="w-5 h-5 text-avs-yellow"></i>
+                    <span class="text-base text-avs-yellow font-bold uppercase tracking-widest">A Força da AVS</span>
+                </div>
+                <h2 class="reveal font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 uppercase tracking-tight">
+                    Por que escolher a <span class="text-avs-yellow">AVS Diesel?</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="reveal-scale group relative bg-avs-card border border-avs-border p-8 text-center hover:border-avs-yellow/50 transition-all duration-500 shadow-lg">
+                    <div class="w-20 h-20 bg-avs-dark border border-avs-border flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:border-avs-yellow transition-all duration-300">
+                        <i data-lucide="rocket" class="w-10 h-10 text-avs-yellow"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Agilidade</h3>
+                    <p class="text-zinc-400 font-medium text-lg leading-relaxed">Atendimento veloz no local para garantir que seu frete não sofra atrasos.</p>
+                </div>
+
+                <div class="reveal-scale group relative bg-avs-card border border-avs-border p-8 text-center hover:border-avs-yellow/50 transition-all duration-500 shadow-lg" style="transition-delay: 100ms;">
+                    <div class="w-20 h-20 bg-avs-dark border border-avs-border flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:border-avs-yellow transition-all duration-300">
+                        <i data-lucide="shield-check" class="w-10 h-10 text-avs-yellow"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Confiança</h3>
+                    <p class="text-zinc-400 font-medium text-lg leading-relaxed">Mecânicos experientes em linha pesada. Serviço feito certo na primeira vez.</p>
+                </div>
+
+                <div class="reveal-scale group relative bg-avs-card border border-avs-border p-8 text-center hover:border-avs-yellow/50 transition-all duration-500 shadow-lg" style="transition-delay: 200ms;">
+                    <div class="w-20 h-20 bg-avs-dark border border-avs-border flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:border-avs-yellow transition-all duration-300">
+                        <i data-lucide="piggy-bank" class="w-10 h-10 text-avs-yellow"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Preço Justo</h3>
+                    <p class="text-zinc-400 font-medium text-lg leading-relaxed">Orçamento transparente sem surpresas. O melhor custo-benefício da região.</p>
+                </div>
+
+                <div class="reveal-scale group relative bg-avs-card border border-avs-border p-8 text-center hover:border-avs-yellow/50 transition-all duration-500 shadow-lg" style="transition-delay: 300ms;">
+                    <div class="w-20 h-20 bg-avs-dark border border-avs-border flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:border-avs-yellow transition-all duration-300">
+                        <i data-lucide="headphones" class="w-10 h-10 text-avs-yellow"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-white mb-3 uppercase tracking-wide">Suporte 24h</h3>
+                    <p class="text-zinc-400 font-medium text-lg leading-relaxed">Não importa a hora, se a elétrica falhar, nós estamos prontos para o resgate.</p>
+                </div>
+            </div>
+
+            <div class="reveal mt-16 bg-gradient-to-r from-avs-yellow/10 via-avs-card to-avs-card border border-avs-border p-8 lg:p-16 overflow-hidden relative shadow-2xl">
+                <div class="absolute inset-0 bg-[url('https://images.pexels.com/photos/3806249/pexels-photo-3806249.jpeg?auto=compress&cs=tinysrgb&w=1200')] opacity-[0.08] object-cover mix-blend-overlay"></div>
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+                    <div class="text-center lg:text-left">
+                        <h3 class="font-heading text-3xl lg:text-4xl font-black text-white mb-4 uppercase tracking-tight">
+                            Precisa de socorro ou agendamento?
+                        </h3>
+                        <p class="text-zinc-300 font-medium text-xl max-w-2xl">
+                            Entre em contato agora mesmo pelo WhatsApp. Nossa viatura vai até o local e resolve o problema do seu bruto.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/554299081928" target="_blank" class="inline-flex items-center gap-3 bg-avs-yellow hover:bg-avs-yellow-hover text-avs-dark font-bold text-2xl px-12 py-5 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-avs-yellow/30 whitespace-nowrap uppercase tracking-wider">
+                        <i data-lucide="message-circle" class="w-8 h-8"></i>
+                        <span>Chamar no WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato" class="relative bg-avs-dark border-t-4 border-avs-yellow">
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-20">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                
+                <div class="lg:col-span-1">
+                    <a href="#" class="flex items-center gap-3 mb-6">
+                        <img src="img/logo.jpg" alt="Logo AVS Diesel" class="w-14 h-14 object-cover border border-avs-border">
+                        <div class="flex flex-col">
+                            <span class="text-3xl font-heading font-bold text-white tracking-wider uppercase">AVS <span class="text-avs-yellow">DIESEL</span></span>
+                        </div>
+                    </a>
+                    <p class="text-zinc-400 font-medium text-lg leading-relaxed mb-8">
+                        Sua parceira de confiança em mecânica e elétrica para caminhões. Onde você estiver, a AVS Diesel vai até você.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/avs_diesel?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="w-14 h-14 bg-avs-card border border-avs-border hover:border-avs-yellow hover:text-avs-yellow flex items-center justify-center text-zinc-400 transition-all duration-300 group">
+                            <i data-lucide="instagram" class="w-7 h-7 group-hover:scale-110 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-white font-bold mb-8 text-xl tracking-wide border-l-4 border-avs-yellow pl-4 uppercase">Serviços</h4>
+                    <ul class="space-y-5">
+                        <li><a href="#servicos" class="text-zinc-400 hover:text-avs-yellow transition-colors font-semibold text-lg flex items-center gap-3 uppercase"><i data-lucide="chevron-right" class="w-4 h-4 text-avs-yellow"></i> Elétrica Pesada</a></li>
+                        <li><a href="#servicos" class="text-zinc-400 hover:text-avs-yellow transition-colors font-semibold text-lg flex items-center gap-3 uppercase"><i data-lucide="chevron-right" class="w-4 h-4 text-avs-yellow"></i> Ar Condicionado</a></li>
+                        <li><a href="#servicos" class="text-zinc-400 hover:text-avs-yellow transition-colors font-semibold text-lg flex items-center gap-3 uppercase"><i data-lucide="chevron-right" class="w-4 h-4 text-avs-yellow"></i> Climatizadores</a></li>
+                        <li><a href="#servicos" class="text-zinc-400 hover:text-avs-yellow transition-colors font-semibold text-lg flex items-center gap-3 uppercase"><i data-lucide="chevron-right" class="w-4 h-4 text-avs-yellow"></i> Baterias Pesadas</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-white font-bold mb-8 text-xl tracking-wide border-l-4 border-avs-yellow pl-4 uppercase">Atendimento Móvel</h4>
+                    <ul class="space-y-5">
+                        <li class="flex items-start gap-4 text-zinc-400 font-semibold text-lg uppercase">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-avs-yellow shrink-0"></i>
+                            <span>Ponta Grossa - PR <br><span class="text-sm text-zinc-500 font-bold tracking-widest mt-1 block">Base Operacional</span></span>
+                        </li>
+                        <li class="flex items-start gap-4 text-zinc-400 font-semibold text-lg uppercase">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-avs-yellow shrink-0"></i>
+                            <span>Castro e Piraí do Sul</span>
+                        </li>
+                        <li class="flex items-start gap-4 text-zinc-400 font-semibold text-lg uppercase">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-avs-yellow shrink-0"></i>
+                            <span>Todo Norte do Paraná</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-white font-bold mb-8 text-xl tracking-wide border-l-4 border-avs-yellow pl-4 uppercase">Contato Rápido</h4>
+                    <ul class="space-y-6">
+                        <li>
+                            <a href="https://wa.me/554299081928" target="_blank" class="flex items-center gap-5 text-zinc-400 hover:text-green-400 transition-colors group">
+                                <div class="w-14 h-14 bg-avs-card border border-avs-border group-hover:border-green-500 flex items-center justify-center transition-colors shrink-0">
+                                    <i data-lucide="phone" class="w-6 h-6 text-green-500"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-1">WhatsApp</p>
+                                    <p class="text-white font-heading font-bold text-2xl tracking-wider">(42) 9908-1928</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-5 text-zinc-400">
+                            <div class="w-14 h-14 bg-avs-card border border-avs-border flex items-center justify-center shrink-0">
+                                <i data-lucide="home" class="w-6 h-6 text-avs-yellow"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-zinc-500 uppercase tracking-widest mb-1">Modelo de Atendimento</p>
+                                <p class="text-white font-bold text-base uppercase">In loco / Na residência</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-avs-border mt-20 pt-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-zinc-500 font-bold text-base text-center md:text-left uppercase tracking-wider">
+                        © 2026 AVS Diesel. Todos os direitos reservados.
+                    </p>
+                    <p class="text-zinc-600 font-bold text-xs uppercase tracking-[0.3em]">
+                        Design focado em conversão
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/554299081928" target="_blank" class="fixed bottom-8 right-8 z-50 group">
+        <span class="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-30"></span>
+        <span class="absolute -inset-3 bg-[#25D366]/20 rounded-full animate-pulse"></span>
+        
+        <div class="relative w-20 h-20 bg-[#25D366] hover:bg-[#20bd5a] rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(37,211,102,0.5)] transition-all duration-300 hover:scale-110">
+            <i data-lucide="message-circle" class="w-10 h-10 text-white"></i>
+        </div>
+    </a>
+
+    <script>
+        lucide.createIcons();
+
+        // HEADER SCROLL EFFECT
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-avs-dark/95', 'backdrop-blur-xl', 'border-b', 'border-avs-border', 'shadow-2xl');
+                header.classList.remove('bg-transparent');
+            } else {
+                header.classList.remove('bg-avs-dark/95', 'backdrop-blur-xl', 'border-b', 'border-avs-border', 'shadow-2xl');
+                header.classList.add('bg-transparent');
+            }
+        });
+
+        // MOBILE MENU TOGGLE
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // INTERSECTION OBSERVER - ANIMAÇÕES DE SCROLL
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // DELAY STAGGERED ANIMATIONS PARA CARDS DE SERVIÇOS
+        const staggerElements = document.querySelectorAll('#servicos .reveal-scale');
+        staggerElements.forEach((el, index) => {
+            el.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // SMOOTH SCROLL PARA ÂNCORAS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
